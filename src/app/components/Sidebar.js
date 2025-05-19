@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Header from './Header'
 
 export default function Sidebar({ children }) {
   const [isOpen, setIsOpen] = useState(true)
@@ -76,10 +77,13 @@ export default function Sidebar({ children }) {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-auto">
-        <div className="p-8">
-          {children}
-        </div>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        <Header />
+        <main className="flex-1 overflow-auto">
+          <div className="p-8">
+            {children}
+          </div>
+        </main>
       </div>
     </div>
   )
