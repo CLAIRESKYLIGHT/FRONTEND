@@ -13,7 +13,7 @@ export default function UsersPage() {
           Add New User
         </button>
       </div>
-
+{/*
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
           <div className="text-sm text-gray-500">Total Users</div>
@@ -31,9 +31,10 @@ export default function UsersPage() {
           <div className="text-sm text-gray-500">Members</div>
           <div className="text-2xl font-semibold text-gray-800">0</div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+  
+    {/* <div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-4 border-b border-gray-200">
           <h2 className="text-lg font-medium text-gray-800">User List</h2>
         </div>
@@ -70,7 +71,7 @@ export default function UsersPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div>*/}
     </div>
   )
 } 

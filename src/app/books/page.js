@@ -1,3 +1,4 @@
+
 export default function BooksPage() {
   return (
     <div className="space-y-6">
@@ -14,7 +15,7 @@ export default function BooksPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/*<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
           <div className="text-sm text-gray-500">Total Books</div>
           <div className="text-2xl font-semibold text-gray-800">0</div>
@@ -31,13 +32,13 @@ export default function BooksPage() {
           <div className="text-sm text-gray-500">Categories</div>
           <div className="text-2xl font-semibold text-gray-800">0</div>
         </div>
-      </div>
+      </div> */}
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+      {/*<div className="bg-white rounded-lg shadow-sm border border-gray-200">
         <div className="p-4 border-b border-gray-200">
           <h2 className="text-lg font-medium text-gray-800">Book List</h2>
-        </div>
-        <div className="overflow-x-auto">
+        </div>*/}
+         {/*<div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
               <tr>
@@ -70,7 +71,7 @@ export default function BooksPage() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div>*/}
     </div>
   )
 } 
