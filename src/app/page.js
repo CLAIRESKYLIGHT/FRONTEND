@@ -6,7 +6,9 @@ export default function HomePage() {
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl font-bold text-gray-800">Library Dashboard</h1>
-        <p className="text-lg text-gray-600 mt-2">Welcome to your library management system</p>
+        <p className="text-lg text-gray-600 mt-2">
+          Welcome to our library management system
+        </p>
       </div>
 
       {/* Stats Cards with Navigation */}
@@ -34,7 +36,7 @@ export default function HomePage() {
         </Link>
       </div>
 
-      {/* Simple Navigation Links */}
+      {/* Simple Navigation Links 
       <div className="flex justify-center gap-6">
         <Link href="/books">
           <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
@@ -46,7 +48,7 @@ export default function HomePage() {
             Users Page
           </button>
         </Link>
-      </div>
+      </div>*/}
     </div>
   );
 }
