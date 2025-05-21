@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-[#FDF7F7] dark:bg-[#2D1517]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="text-center mb-16">
@@ -16,7 +16,7 @@ export default function HomePage() {
 
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div className="card">
+          <div className="bg-white/70 dark:bg-[#3D1D1F]/70 backdrop-blur-sm shadow-lg rounded-xl p-6 transition-all duration-200 hover:shadow-xl">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
                 <svg className="w-6 h-6 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -30,7 +30,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="card">
+          <div className="bg-white/70 dark:bg-[#3D1D1F]/70 backdrop-blur-sm shadow-lg rounded-xl p-6 transition-all duration-200 hover:shadow-xl">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-green-100 dark:bg-green-900">
                 <svg className="w-6 h-6 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="card">
+          <div className="bg-white/70 dark:bg-[#3D1D1F]/70 backdrop-blur-sm shadow-lg rounded-xl p-6 transition-all duration-200 hover:shadow-xl">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-purple-100 dark:bg-purple-900">
                 <svg className="w-6 h-6 text-purple-600 dark:text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="card">
+          <div className="bg-white/70 dark:bg-[#3D1D1F]/70 backdrop-blur-sm shadow-lg rounded-xl p-6 transition-all duration-200 hover:shadow-xl">
             <div className="flex items-center">
               <div className="p-3 rounded-full bg-yellow-100 dark:bg-yellow-900">
                 <svg className="w-6 h-6 text-yellow-600 dark:text-yellow-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@ export default function HomePage() {
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Link href="/books" className="group">
-            <div className="card hover:shadow-lg transition-all duration-200">
+            <div className="bg-white/70 dark:bg-[#3D1D1F]/70 backdrop-blur-sm shadow-lg rounded-xl p-6 transition-all duration-200 hover:shadow-xl">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
@@ -96,7 +96,7 @@ export default function HomePage() {
           </Link>
 
           <Link href="/users" className="group">
-            <div className="card hover:shadow-lg transition-all duration-200">
+            <div className="bg-white/70 dark:bg-[#3D1D1F]/70 backdrop-blur-sm shadow-lg rounded-xl p-6 transition-all duration-200 hover:shadow-xl">
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">

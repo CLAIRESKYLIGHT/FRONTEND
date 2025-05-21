@@ -40,15 +40,15 @@ export default function Sidebar({ children }) {
   ]
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex h-screen bg-[#FDF7F7] dark:bg-[#2D1517]">
       {/* Sidebar */}
       <div 
         className={`${
           isOpen ? 'w-64' : 'w-20'
-        } bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transition-all duration-300`}
+        } bg-white/80 dark:bg-[#3D1D1F]/80 backdrop-blur-sm border-r border-[#800020]/10 dark:border-[#800020]/20 transition-all duration-300`}
       >
         <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between p-4 border-b border-[#800020]/10 dark:border-[#800020]/20">
             {isOpen && (
               <div className="flex items-center space-x-3">
                 <svg className="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,14 +84,14 @@ export default function Sidebar({ children }) {
                 href={item.href}
                 className={`flex items-center px-3 py-2.5 rounded-lg transition-all duration-200 group ${
                   pathname === item.href
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    ? 'bg-[#800020]/10 text-[#800020] dark:bg-[#800020]/20 dark:text-[#FFB6C1]'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-[#800020]/5 dark:hover:bg-[#800020]/10'
                 }`}
               >
                 <span className={`${
                   pathname === item.href 
-                    ? 'text-primary' 
-                    : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300'
+                    ? 'text-[#800020] dark:text-[#FFB6C1]' 
+                    : 'text-gray-500 dark:text-gray-400 group-hover:text-[#800020] dark:group-hover:text-[#FFB6C1]'
                 }`}>
                   {item.icon}
                 </span>
