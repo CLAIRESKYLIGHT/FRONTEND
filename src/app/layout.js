@@ -1,13 +1,13 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Sidebar from './components/Sidebar'
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Sidebar from "./components/Sidebar";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Library Management',
-  description: 'Library Management System',
-}
+  title: "Library Management",
+  description: "Library Management System",
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -16,5 +16,5 @@ export default function RootLayout({ children }) {
         <Sidebar>{children}</Sidebar>
       </body>
     </html>
-  )
+  );
 }
