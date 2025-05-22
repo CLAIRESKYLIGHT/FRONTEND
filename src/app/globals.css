@@ -17,24 +17,36 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #22211F;
-    --foreground: #F5E9DA;
-    --library-brown: #5A4322;
+    --background: #1A1A1A;  /* Softer dark background */
+    --foreground: #E5E5E5;  /* Softer light text */
+    --library-brown: #BFA45C; /* Warmer, lighter brown for dark mode */
+    --primary: #7AB87F;    /* Softer, more muted green */
+    --primary-dark: #5A9B62; /* Softer dark green */
+    --secondary: #D4B76B;  /* Softer gold */
+    --secondary-dark: #BFA45C; /* Softer dark gold */
+    --library-green: #4FD1C5; /* Brighter teal for dark mode */
+    --library-gold: #F6E05E; /* Brighter gold for dark mode */
+    --library-red: #FC8181; /* Softer red for dark mode */
   }
 }
 
 @layer base {
   body {
-    @apply bg-[color:var(--background)];
+    @apply bg-[color:var(--background)] text-[color:var(--foreground)];
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    /* Subtle paper texture */
+    /* Subtle paper texture with reduced opacity in dark mode */
     background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
     background-repeat: repeat;
+    background-blend-mode: overlay;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Merriweather', serif;
-    @apply font-bold tracking-tight text-[color:var(--primary)];
+    @apply font-bold tracking-tight text-[color:var(--primary)] dark:text-[color:var(--primary)];
+  }
+
+  p {
+    @apply text-[color:var(--foreground)];
   }
 }
 
@@ -48,10 +60,31 @@
   }
 
   .card {
-    @apply bg-[color:var(--background)] dark:bg-[#2B1515]/70 rounded-xl shadow-md border border-[color:var(--library-brown)] backdrop-blur-sm p-6 transition-all duration-200;
+    @apply bg-[color:var(--background)] dark:bg-[#2A2A2A]/90 rounded-xl shadow-md border border-[color:var(--library-brown)] backdrop-blur-sm p-6 transition-all duration-200;
   }
 
   .input {
-    @apply w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800/50 border border-[color:var(--library-brown)] focus:ring-2 focus:ring-[color:var(--primary)] focus:border-[color:var(--primary)] outline-none transition-all duration-200;
+    @apply w-full px-4 py-2 rounded-lg bg-white dark:bg-[#2A2A2A]/80 border border-[color:var(--library-brown)] focus:ring-2 focus:ring-[color:var(--primary)] focus:border-[color:var(--primary)] outline-none transition-all duration-200 text-[color:var(--foreground)];
+  }
+
+  /* Dashboard specific styles */
+  .dashboard-text {
+    @apply text-[color:var(--foreground)] dark:text-[color:var(--foreground)];
+  }
+
+  .dashboard-subtext {
+    @apply text-[color:var(--library-brown)] dark:text-[color:var(--library-brown)];
+  }
+
+  .dashboard-stat {
+    @apply text-[color:var(--library-green)] dark:text-[color:var(--library-green)];
+  }
+
+  .dashboard-stat-secondary {
+    @apply text-[color:var(--library-gold)] dark:text-[color:var(--library-gold)];
+  }
+
+  .dashboard-stat-warning {
+    @apply text-[color:var(--library-red)] dark:text-[color:var(--library-red)];
   }
 }
