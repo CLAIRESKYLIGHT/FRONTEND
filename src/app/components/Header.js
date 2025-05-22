@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTheme } from '../context/ThemeContext'
+import Link from 'next/link'
 
 // Header component displays the top navigation bar with search and profile modal
 export default function Header() {
@@ -27,7 +28,8 @@ export default function Header() {
                 <path d="M12 34C16 32 20 32 24 34C28 32 32 32 36 34" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
-            <div className="relative w-full">
+            
+            <div className="relative flex-1">
               <input
                 type="text"
                 placeholder="Search the catalog..."
@@ -54,27 +56,25 @@ export default function Header() {
             </div>
           </div>
 
-          <div className="flex items-center">
-            {/* Profile Button */}
-            <button
-              onClick={() => setIsProfileOpen(true)}
-              className="flex items-center space-x-3 hover:bg-[#F0EBE1] dark:hover:bg-slate-700 active:bg-[#EDE8DE] dark:active:bg-slate-600 p-2 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
-              aria-label="Open profile menu"
-            >
-              {/* Library badge avatar */}
-              <div className="h-10 w-10 rounded-lg bg-[#EDE8DE] dark:bg-teal-900/30 flex items-center justify-center border border-[#E8E1D5] dark:border-teal-800">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="4" width="18" height="16" rx="2"/>
-                  <path d="M16 2v4"/>
-                  <path d="M8 2v4"/>
-                </svg>
-              </div>
-              <div className="hidden sm:block text-left">
-                <p className="text-sm font-medium text-slate-900 dark:text-white" style={{ fontFamily: 'Inter, sans-serif' }}>Admin User</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Librarian</p>
-              </div>
-            </button>
-          </div>
+          {/* Profile Button */}
+          <Link
+            href="/profile"
+            className="flex items-center space-x-3 hover:bg-[#F0EBE1] dark:hover:bg-slate-700 active:bg-[#EDE8DE] dark:active:bg-slate-600 p-2 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/20"
+            aria-label="View profile"
+          >
+            {/* Library badge avatar */}
+            <div className="h-10 w-10 rounded-lg bg-[#EDE8DE] dark:bg-teal-900/30 flex items-center justify-center border border-[#E8E1D5] dark:border-teal-800">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="16" rx="2"/>
+                <path d="M16 2v4"/>
+                <path d="M8 2v4"/>
+              </svg>
+            </div>
+            <div className="hidden sm:block text-left">
+              <p className="text-sm font-medium text-slate-900 dark:text-white" style={{ fontFamily: 'Inter, sans-serif' }}>Admin User</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Librarian</p>
+            </div>
+          </Link>
         </div>
       </header>
 

@@ -157,8 +157,8 @@ export default function Sidebar({ children }) {
             </button>
 
             {/* User Profile section */}
-            <button
-              onClick={() => {/* Handle profile click */}}
+            <Link
+              href="/profile"
               onMouseEnter={() => setIsProfileHovered(true)}
               onMouseLeave={() => setIsProfileHovered(false)}
               className={`w-full flex items-center space-x-3 p-4 rounded-xl transition-all duration-200 ${
@@ -180,7 +180,7 @@ export default function Sidebar({ children }) {
                   <p className="text-xs text-gray-600 dark:text-gray-300 truncate">admin@library.com</p>
                 </div>
               )}
-            </button>
+            </Link>
           </div>
         </div>
       </div>
