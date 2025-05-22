@@ -1,26 +1,57 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Library theme color palette */
+  --primary: #4A7B50;      /* Lighter Library Green */
+  --primary-dark: #35603F; /* Slightly lighter Dark Green */
+  --secondary: #C9A14A;    /* Gold Accent */
+  --secondary-dark: #A88936; /* Darker Gold */
+  --background: #F5E9DA;   /* Parchment Beige */
+  --foreground: #22211F;   /* Deep Brown */
+  --library-brown: #7C5C38;
+  --library-red: #A94442;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #22211F;
+    --foreground: #F5E9DA;
+    --library-brown: #5A4322;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    @apply bg-[color:var(--background)];
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Subtle paper texture */
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-repeat: repeat;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+    @apply font-bold tracking-tight text-[color:var(--primary)];
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-4 py-2 bg-[color:var(--primary)] text-white rounded-lg hover:bg-[color:var(--primary-dark)] transition-all duration-200 font-medium shadow-sm hover:shadow-md border border-[color:var(--library-gold)];
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-[color:var(--secondary)] text-white rounded-lg hover:bg-[color:var(--secondary-dark)] transition-all duration-200 font-medium shadow-sm hover:shadow-md;
+  }
+
+  .card {
+    @apply bg-[color:var(--background)] dark:bg-[#2B1515]/70 rounded-xl shadow-md border border-[color:var(--library-brown)] backdrop-blur-sm p-6 transition-all duration-200;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800/50 border border-[color:var(--library-brown)] focus:ring-2 focus:ring-[color:var(--primary)] focus:border-[color:var(--primary)] outline-none transition-all duration-200;
+  }
 }
