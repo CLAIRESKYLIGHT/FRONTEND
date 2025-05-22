@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'media',
+  darkMode: 'class', // Enable class-based dark mode
   theme: {
     extend: {
       colors: {
@@ -15,12 +15,12 @@ module.exports = {
         'secondary-dark': 'var(--secondary-dark)',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        // Library theme colors
-        'library-green': '#4A7B50', // Lighter green
-        'library-brown': '#7C5C38', // Warm brown
-        'library-beige': '#F5E9DA', // Parchment beige
-        'library-gold': '#C9A14A', // Gold accent
-        'library-red': '#A94442', // Muted red
+        // Custom colors for the library theme
+        'library-beige': '#F5F1E8',
+        'library-brown': '#8B7355',
+        'library-green': '#0F766E',
+        'library-gold': '#B7935F',
+        'library-red': '#DC2626',
       },
     },
   },
