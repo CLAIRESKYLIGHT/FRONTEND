@@ -15,6 +15,12 @@ module.exports = {
         'secondary-dark': 'var(--secondary-dark)',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
+        // Library theme colors
+        'library-green': '#4A7B50', // Lighter green
+        'library-brown': '#7C5C38', // Warm brown
+        'library-beige': '#F5E9DA', // Parchment beige
+        'library-gold': '#C9A14A', // Gold accent
+        'library-red': '#A94442', // Muted red
       },
     },
   },
