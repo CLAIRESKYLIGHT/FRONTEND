@@ -1,70 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* New modern color palette */
-  --primary: #6366f1;      /* Indigo-500 - Main brand color */
-  --primary-dark: #4f46e5; /* Indigo-600 - Darker shade for hover */
-  --secondary: #ec4899;    /* Pink-500 - Accent color */
-  --secondary-dark: #db2777; /* Pink-600 - Darker shade for hover */
-  
-  /* Light mode */
-  --background: #ffffff;
-  --foreground: #111827;
-  --gray-50: #f8fafc;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-800: #1e293b;
+  /* Library theme color palette */
+  --primary: #4A7B50;      /* Lighter Library Green */
+  --primary-dark: #35603F; /* Slightly lighter Dark Green */
+  --secondary: #C9A14A;    /* Gold Accent */
+  --secondary-dark: #A88936; /* Darker Gold */
+  --background: #F5E9DA;   /* Parchment Beige */
+  --foreground: #22211F;   /* Deep Brown */
+  --library-brown: #7C5C38;
+  --library-red: #A94442;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Dark mode */
-    --background: #0f172a;
-    --foreground: #f8fafc;
-    --gray-50: #1e293b;
-    --gray-100: #334155;
-    --gray-200: #475569;
-    --gray-300: #64748b;
-    --gray-400: #94a3b8;
-    --gray-500: #cbd5e1;
-    --gray-600: #e2e8f0;
-    --gray-700: #f1f5f9;
-    --gray-800: #f8fafc;
+    --background: #22211F;
+    --foreground: #F5E9DA;
+    --library-brown: #5A4322;
   }
 }
 
 @layer base {
   body {
-    @apply bg-gray-50;
+    @apply bg-[color:var(--background)];
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Subtle paper texture */
+    background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+    background-repeat: repeat;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-medium tracking-tight;
+    font-family: 'Merriweather', serif;
+    @apply font-bold tracking-tight text-[color:var(--primary)];
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all duration-200 font-medium shadow-sm hover:shadow-md;
+    @apply px-4 py-2 bg-[color:var(--primary)] text-white rounded-lg hover:bg-[color:var(--primary-dark)] transition-all duration-200 font-medium shadow-sm hover:shadow-md border border-[color:var(--library-gold)];
   }
 
   .btn-secondary {
-    @apply px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-dark transition-all duration-200 font-medium shadow-sm hover:shadow-md;
+    @apply px-4 py-2 bg-[color:var(--secondary)] text-white rounded-lg hover:bg-[color:var(--secondary-dark)] transition-all duration-200 font-medium shadow-sm hover:shadow-md;
   }
 
   .card {
-    @apply bg-white dark:bg-gray-800/50 rounded-xl shadow-sm hover:shadow-md border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm p-6 transition-all duration-200;
+    @apply bg-[color:var(--background)] dark:bg-[#2B1515]/70 rounded-xl shadow-md border border-[color:var(--library-brown)] backdrop-blur-sm p-6 transition-all duration-200;
   }
 
   .input {
-    @apply w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-200;
+    @apply w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800/50 border border-[color:var(--library-brown)] focus:ring-2 focus:ring-[color:var(--primary)] focus:border-[color:var(--primary)] outline-none transition-all duration-200;
   }
 }
