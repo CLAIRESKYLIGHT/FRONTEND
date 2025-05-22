@@ -5,10 +5,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Header from './Header'
 
+// Sidebar component provides navigation and wraps the main content area
 export default function Sidebar({ children }) {
+  // State to control sidebar open/collapse
   const [isOpen, setIsOpen] = useState(true)
+  // Get current route for active nav highlighting
   const pathname = usePathname()
 
+  // Navigation items for the sidebar
   const navItems = [
     {
       name: 'Dashboard',
@@ -41,13 +45,14 @@ export default function Sidebar({ children }) {
 
   return (
     <div className="flex h-screen bg-[#F8EFEF] dark:bg-[#1F0F0F]">
-      {/* Sidebar */}
+      {/* Sidebar navigation area */}
       <div 
         className={`${
           isOpen ? 'w-64' : 'w-20'
         } bg-white/80 dark:bg-[#2B1515]/80 backdrop-blur-sm border-r border-[#600000]/10 dark:border-[#600000]/20 transition-all duration-300`}
       >
         <div className="flex flex-col h-full">
+          {/* Sidebar header with logo and collapse button */}
           <div className="flex items-center justify-between p-4 border-b border-[#600000]/10 dark:border-[#600000]/20">
             {isOpen && (
               <div className="flex items-center space-x-3">
@@ -76,7 +81,7 @@ export default function Sidebar({ children }) {
             </button>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation links */}
           <nav className="flex-1 p-4 space-y-1.5">
             {navItems.map((item) => (
               <Link
@@ -104,7 +109,7 @@ export default function Sidebar({ children }) {
             ))}
           </nav>
 
-          {/* User Profile */}
+          {/* User Profile section at the bottom of the sidebar */}
           {isOpen && (
             <div className="p-4 border-t border-gray-200 dark:border-gray-700">
               <div className="flex items-center space-x-3">
@@ -123,7 +128,7 @@ export default function Sidebar({ children }) {
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content area with header and children */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header />
         <main className="flex-1 overflow-auto">
