@@ -39,12 +39,11 @@ export default function BooksPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-800">Books</h1>
-          <p className="text-sm text-gray-500 mt-1">
-            Manage your library&apos;s book collection
-          <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">Books</h1>
+          <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
+            Books
+          </h1>
           <p className="text-sm text-gray-500 dark:text-gray-300 mt-1">
-            Manage your library's book collection
+            Manage your library&apos;s book collection
           </p>
         </div>
         <button className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 flex items-center">
@@ -62,7 +61,6 @@ export default function BooksPage() {
             />
           </svg>
           Add New Book
-          Add New book
         </button>
       </div>
 
