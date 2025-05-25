@@ -5,38 +5,79 @@ export default function UsersPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [editingUser, setEditingUser] = useState(null);
+  const [newUser, setNewUser] = useState({ name: "", email: "", role: "" });
+  const [saving, setSaving] = useState(false);
 
   const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
   useEffect(() => {
-    async function loadUsers() {
-      try {
-        const res = await fetch(`${API_BASE}/users`, {
-          headers: {
-            "Content-Type": "application/json",
-            // Include Authorization header if needed
-            // Authorization: `Bearer ${your_token_here}`,
-          },
-        });
-        if (!res.ok) throw new Error("Failed to fetch users");
-        const data = await res.json();
-        setUsers(data.data || []);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
     loadUsers();
-  }, [API_BASE]);
+  }, []);
 
-  const handleEdit = (userId) => {
-    alert(`Edit user with ID: ${userId}`);
-  };
+  async function loadUsers() {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/users`);
+      if (!res.ok) throw new Error("Failed to fetch users");
+      const data = await res.json();
+      setUsers(data.data || []);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
-  const handleDelete = (userId) => {
-    alert(`Delete user with ID: ${userId}`);
-  };
+  async function handleAddUser() {
+    if (!newUser.name || !newUser.email) return;
+    try {
+      setSaving(true);
+      const res = await fetch(`${API_BASE}/users`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      });
+      if (!res.ok) throw new Error("Failed to add user");
+      setNewUser({ name: "", email: "", role: "" });
+      await loadUsers();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleUpdateUser(userId) {
+    try {
+      setSaving(true);
+      const res = await fetch(`${API_BASE}/users/${userId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(editingUser),
+      });
+      if (!res.ok) throw new Error("Failed to update user");
+      setEditingUser(null);
+      await loadUsers();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  async function handleDelete(userId) {
+    if (!confirm("Are you sure you want to delete this user?")) return;
+    try {
+      const res = await fetch(`${API_BASE}/users/${userId}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error("Failed to delete user");
+      await loadUsers();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   return (
     <div className="space-y-6">
@@ -49,21 +90,33 @@ export default function UsersPage() {
             Manage library users and their roles
           </p>
         </div>
-        <button className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-colors duration-200 flex items-center">
-          <svg
-            className="w-5 h-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 4v16m8-8H4"
-            />
-          </svg>
-          Add New User
+      </div>
+
+      <div className="flex gap-2">
+        <input
+          className="border px-2 py-1 rounded"
+          placeholder="Name"
+          value={newUser.name}
+          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+        />
+        <input
+          className="border px-2 py-1 rounded"
+          placeholder="Email"
+          value={newUser.email}
+          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+        />
+        <input
+          className="border px-2 py-1 rounded"
+          placeholder="Role"
+          value={newUser.role}
+          onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+        />
+        <button
+          className="px-4 py-1 bg-green-600 text-white rounded disabled:opacity-50"
+          onClick={handleAddUser}
+          disabled={saving}
+        >
+          Add User
         </button>
       </div>
 
@@ -89,37 +142,83 @@ export default function UsersPage() {
             </tr>
           </thead>
           <tbody>
-            {users.length === 0 && (
-              <tr>
-                <td colSpan="4" className="text-center py-4">
-                  No users found.
-                </td>
-              </tr>
-            )}
             {users.map((user) => (
               <tr key={user.id} className="hover:bg-gray-50">
                 <td className="border border-gray-300 px-4 py-2">
-                  {user.name}
+                  {editingUser?.id === user.id ? (
+                    <input
+                      value={editingUser.name}
+                      onChange={(e) =>
+                        setEditingUser({ ...editingUser, name: e.target.value })
+                      }
+                      className="border px-2 py-1 rounded w-full"
+                    />
+                  ) : (
+                    user.name
+                  )}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {user.email}
+                  {editingUser?.id === user.id ? (
+                    <input
+                      value={editingUser.email}
+                      onChange={(e) =>
+                        setEditingUser({
+                          ...editingUser,
+                          email: e.target.value,
+                        })
+                      }
+                      className="border px-2 py-1 rounded w-full"
+                    />
+                  ) : (
+                    user.email
+                  )}
                 </td>
                 <td className="border border-gray-300 px-4 py-2">
-                  {user.role || "N/A"}
+                  {editingUser?.id === user.id ? (
+                    <input
+                      value={editingUser.role}
+                      onChange={(e) =>
+                        setEditingUser({ ...editingUser, role: e.target.value })
+                      }
+                      className="border px-2 py-1 rounded w-full"
+                    />
+                  ) : (
+                    user.role || "N/A"
+                  )}
                 </td>
                 <td className="border border-gray-300 px-4 py-2 space-x-2">
-                  <button
-                    onClick={() => handleEdit(user.id)}
-                    className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(user.id)}
-                    className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
-                  >
-                    Delete
-                  </button>
+                  {editingUser?.id === user.id ? (
+                    <>
+                      <button
+                        onClick={() => handleUpdateUser(user.id)}
+                        className="px-3 py-1 bg-green-600 text-white rounded disabled:opacity-50"
+                        disabled={saving}
+                      >
+                        Save
+                      </button>
+                      <button
+                        onClick={() => setEditingUser(null)}
+                        className="px-3 py-1 bg-gray-600 text-white rounded"
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => setEditingUser(user)}
+                        className="px-3 py-1 bg-blue-600 text-white rounded"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(user.id)}
+                        className="px-3 py-1 bg-red-600 text-white rounded"
+                      >
+                        Delete
+                      </button>
+                    </>
+                  )}
                 </td>
               </tr>
             ))}
