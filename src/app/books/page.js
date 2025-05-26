@@ -256,31 +256,31 @@ export default function BooksPage() {
 
       {!loading && !error && (
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse border border-gray-300">
+          <table className="w-full border-collapse border border-gray-300 dark:border-gray-600">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[120px]">
+              <tr className="bg-gray-100 dark:bg-gray-700">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[120px]">
                   Title
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[120px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[120px]">
                   Author
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[100px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[100px]">
                   ISBN
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[80px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[80px]">
                   Price
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[80px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[80px]">
                   Available
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[80px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[80px]">
                   Published
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[150px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[150px]">
                   Description
                 </th>
-                <th className="border border-gray-300 px-4 py-2 text-left min-w-[150px]">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white min-w-[150px]">
                   Actions
                 </th>
               </tr>
@@ -288,43 +288,43 @@ export default function BooksPage() {
             <tbody>
               {books.length === 0 && (
                 <tr>
-                  <td colSpan="8" className="text-center py-4">
+                  <td colSpan="8" className="text-center py-4 text-gray-800 dark:text-white">
                     No books found.
                   </td>
                 </tr>
               )}
               {books.map((book) => (
-                <tr key={book.id} className="hover:bg-gray-50">
+                <tr key={book.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   {editingBookId === book.id ? (
                     <>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
                         <input
                           value={editData.title}
                           onChange={(e) =>
                             setEditData({ ...editData, title: e.target.value })
                           }
-                          className="w-full border rounded p-1"
+                          className="w-full border rounded p-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
                         <input
                           value={editData.author}
                           onChange={(e) =>
                             setEditData({ ...editData, author: e.target.value })
                           }
-                          className="w-full border rounded p-1"
+                          className="w-full border rounded p-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
                         <input
                           value={editData.isbn}
                           onChange={(e) =>
                             setEditData({ ...editData, isbn: e.target.value })
                           }
-                          className="w-full border rounded p-1"
+                          className="w-full border rounded p-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
                         <input
                           type="number"
                           value={editData.price}
@@ -334,10 +334,10 @@ export default function BooksPage() {
                               price: parseFloat(e.target.value),
                             })
                           }
-                          className="w-full border rounded p-1"
+                          className="w-full border rounded p-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
                         <input
                           type="checkbox"
                           checked={editData.is_available}
@@ -347,9 +347,10 @@ export default function BooksPage() {
                               is_available: e.target.checked,
                             })
                           }
+                          className="bg-white dark:bg-gray-800"
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
                         <input
                           type="date"
                           value={editData.published_date || ""}
@@ -359,10 +360,10 @@ export default function BooksPage() {
                               published_date: e.target.value,
                             })
                           }
-                          className="w-full border rounded p-1"
+                          className="w-full border rounded p-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2">
                         <textarea
                           value={editData.description || ""}
                           onChange={(e) =>
@@ -371,11 +372,11 @@ export default function BooksPage() {
                               description: e.target.value,
                             })
                           }
-                          className="w-full border rounded p-1"
+                          className="w-full border rounded p-1 bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                           rows={2}
                         />
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 space-x-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 space-x-2">
                         <button
                           onClick={handleSaveEdit}
                           className="bg-green-600 text-white px-2 py-1 rounded"
@@ -392,28 +393,28 @@ export default function BooksPage() {
                     </>
                   ) : (
                     <>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                         {book.title}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                         {book.author}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                         {book.isbn}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                         ${book.price}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-800 dark:text-white">
                         {book.is_available ? "Yes" : "No"}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                         {formatPublishedDate(book.published_date)}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                         {book.description || "-"}
                       </td>
-                      <td className="border border-gray-300 px-4 py-2 space-x-2">
+                      <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 space-x-2">
                         <button
                           onClick={() => handleEdit(book.id)}
                           className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"

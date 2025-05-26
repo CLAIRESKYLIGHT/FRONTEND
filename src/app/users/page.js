@@ -163,50 +163,50 @@ export default function UsersPage() {
         ) : (
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="border border-gray-300 px-4 py-2 text-left">Name</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Email</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Role</th>
-                <th className="border border-gray-300 px-4 py-2 text-left">Actions</th>
+              <tr className="bg-gray-100 dark:bg-gray-700">
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white">Name</th>
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white">Email</th>
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white">Role</th>
+                <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-800 dark:text-white">Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-2">
+                <tr key={user.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                  <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                     {editingUser?.id === user.id ? (
                       <input
                         value={editingUser.name}
                         onChange={(e) => setEditingUser({ ...editingUser, name: e.target.value })}
-                        className="border px-2 py-1 rounded w-full"
+                        className="border px-2 py-1 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                       />
                     ) : (
                       user.name
                     )}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
+                  <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                     {editingUser?.id === user.id ? (
                       <input
                         value={editingUser.email}
                         onChange={(e) => setEditingUser({ ...editingUser, email: e.target.value })}
-                        className="border px-2 py-1 rounded w-full"
+                        className="border px-2 py-1 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                       />
                     ) : (
                       user.email
                     )}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2">
+                  <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white">
                     {editingUser?.id === user.id ? (
                       <input
                         value={editingUser.role}
                         onChange={(e) => setEditingUser({ ...editingUser, role: e.target.value })}
-                        className="border px-2 py-1 rounded w-full"
+                        className="border px-2 py-1 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
                       />
                     ) : (
                       user.role || "N/A"
                     )}
                   </td>
-                  <td className="border border-gray-300 px-4 py-2 space-x-2">
+                  <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 space-x-2">
                     {editingUser?.id === user.id ? (
                       <>
                         <button
