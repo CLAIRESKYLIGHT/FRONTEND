@@ -6,8 +6,15 @@ export default function UsersPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [editingUser, setEditingUser] = useState(null);
-  const [newUser, setNewUser] = useState({ name: "", email: "", role: "" });
+  const [newUser, setNewUser] = useState({ 
+    name: "", 
+    email: "", 
+    role: "",
+    password: "",
+    confirmPassword: ""
+  });
   const [saving, setSaving] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
 
   const API_BASE = process.env.NEXT_PUBLIC_API_URL;
 
@@ -30,16 +37,33 @@ export default function UsersPage() {
   }
 
   async function handleAddUser() {
-    if (!newUser.name || !newUser.email) return;
+    if (!newUser.name || !newUser.email || !newUser.password) {
+      setPasswordError("All fields are required");
+      return;
+    }
+    
+    if (newUser.password !== newUser.confirmPassword) {
+      setPasswordError("Passwords do not match");
+      return;
+    }
+
     try {
       setSaving(true);
+      const userData = {
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role,
+        password: newUser.password
+      };
+      
       const res = await fetch(`${API_BASE}/users`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
+        body: JSON.stringify(userData),
       });
       if (!res.ok) throw new Error("Failed to add user");
-      setNewUser({ name: "", email: "", role: "" });
+      setNewUser({ name: "", email: "", role: "", password: "", confirmPassword: "" });
+      setPasswordError("");
       await loadUsers();
     } catch (err) {
       setError(err.message);
@@ -92,32 +116,51 @@ export default function UsersPage() {
         </div>
       </div>
 
-      <div className="flex gap-2">
-        <input
-          className="border px-2 py-1 rounded"
-          placeholder="Name"
-          value={newUser.name}
-          onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-        />
-        <input
-          className="border px-2 py-1 rounded"
-          placeholder="Email"
-          value={newUser.email}
-          onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
-        />
-        <input
-          className="border px-2 py-1 rounded"
-          placeholder="Role"
-          value={newUser.role}
-          onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
-        />
-        <button
-          className="px-4 py-1 bg-green-600 text-white rounded disabled:opacity-50"
-          onClick={handleAddUser}
-          disabled={saving}
-        >
-          Add User
-        </button>
+      <div className="flex flex-col gap-2">
+        <div className="flex gap-2">
+          <input
+            className="border px-2 py-1 rounded"
+            placeholder="Name"
+            value={newUser.name}
+            onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
+          />
+          <input
+            className="border px-2 py-1 rounded"
+            placeholder="Email"
+            value={newUser.email}
+            onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+          />
+          <input
+            className="border px-2 py-1 rounded"
+            placeholder="Role"
+            value={newUser.role}
+            onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
+          />
+        </div>
+        <div className="flex gap-2">
+          <input
+            type="password"
+            className="border px-2 py-1 rounded"
+            placeholder="Password"
+            value={newUser.password}
+            onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+          />
+          <input
+            type="password"
+            className="border px-2 py-1 rounded"
+            placeholder="Confirm Password"
+            value={newUser.confirmPassword}
+            onChange={(e) => setNewUser({ ...newUser, confirmPassword: e.target.value })}
+          />
+          <button
+            className="px-4 py-1 bg-green-600 text-white rounded disabled:opacity-50"
+            onClick={handleAddUser}
+            disabled={saving}
+          >
+            Add User
+          </button>
+        </div>
+        {passwordError && <p className="text-red-600 text-sm">{passwordError}</p>}
       </div>
 
       {loading && <p>Loading users...</p>}
