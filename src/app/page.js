@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { fetchApi } from './config/api';
 
 export default function HomePage() {
   const [stats, setStats] = useState({
@@ -22,7 +23,7 @@ export default function HomePage() {
       setLoading(true);
       setError(null);
       
-      const response = await fetch(`${API_BASE}/dashboard/stats`);
+      const response = await fetchApi('/dashboard/stats');
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

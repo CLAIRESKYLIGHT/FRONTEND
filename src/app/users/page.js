@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { fetchApi } from '../config/api';
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,7 @@ export default function UsersPage() {
   async function loadUsers() {
     setLoading(true);
     try {
-      const res = await fetch(`${API_BASE}/users`);
+      const res = await fetchApi('/users');
       if (!res.ok) throw new Error("Failed to fetch users");
       const data = await res.json();
       setUsers(data.data || []);
@@ -33,10 +34,9 @@ export default function UsersPage() {
     if (!newUser.name || !newUser.email) return;
     try {
       setSaving(true);
-      const res = await fetch(`${API_BASE}/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser),
+      const res = await fetchApi('/users', {
+        method: 'POST',
+        body: JSON.stringify(newUser)
       });
       if (!res.ok) throw new Error("Failed to add user");
       setNewUser({ name: "", email: "", role: "" });
@@ -51,10 +51,9 @@ export default function UsersPage() {
   async function handleUpdateUser(userId) {
     try {
       setSaving(true);
-      const res = await fetch(`${API_BASE}/users/${userId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(editingUser),
+      const res = await fetchApi(`/users/${userId}`, {
+        method: 'PUT',
+        body: JSON.stringify(editingUser)
       });
       if (!res.ok) throw new Error("Failed to update user");
       setEditingUser(null);
@@ -69,8 +68,8 @@ export default function UsersPage() {
   async function handleDelete(userId) {
     if (!confirm("Are you sure you want to delete this user?")) return;
     try {
-      const res = await fetch(`${API_BASE}/users/${userId}`, {
-        method: "DELETE",
+      const res = await fetchApi(`/users/${userId}`, {
+        method: 'DELETE'
       });
       if (!res.ok) throw new Error("Failed to delete user");
       await loadUsers();

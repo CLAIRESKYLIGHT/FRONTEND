@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { fetchApi } from '../config/api';
 
 export default function BooksPage() {
   const [books, setBooks] = useState([]);
@@ -24,7 +25,7 @@ export default function BooksPage() {
   useEffect(() => {
     async function loadBooks() {
       try {
-        const res = await fetch(`${API_BASE}/books`);
+        const res = await fetchApi('/books');
         if (!res.ok) throw new Error("Failed to fetch books");
         const data = await res.json();
         setBooks(data.data || []);
@@ -57,12 +58,9 @@ export default function BooksPage() {
 
   const handleAddBook = async () => {
     try {
-      const res = await fetch(`${API_BASE}/books`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newBook),
+      const res = await fetchApi('/books', {
+        method: 'POST',
+        body: JSON.stringify(newBook)
       });
       if (!res.ok) throw new Error("Failed to add book");
       const data = await res.json();
@@ -90,8 +88,8 @@ export default function BooksPage() {
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`${API_BASE}/books/${bookId}`, {
-        method: "DELETE",
+      const res = await fetchApi(`/books/${bookId}`, {
+        method: 'DELETE'
       });
       if (!res.ok) throw new Error("Failed to delete book");
 
@@ -110,12 +108,9 @@ export default function BooksPage() {
 
   const handleSaveEdit = async () => {
     try {
-      const res = await fetch(`${API_BASE}/books/${editingBookId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editData),
+      const res = await fetchApi(`/books/${editingBookId}`, {
+        method: 'PUT',
+        body: JSON.stringify(editData)
       });
 
       if (!res.ok) throw new Error("Failed to update book");
