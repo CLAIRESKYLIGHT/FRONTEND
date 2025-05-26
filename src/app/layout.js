@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ClientThemeProvider from './components/ClientThemeProvider';
+import Sidebar from './components/Sidebar';
 
 // Load the Inter font with latin subset
 const inter = Inter({ subsets: ["latin"] });
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ClientThemeProvider>
-          {children}
+          <Sidebar>
+            {children}
+          </Sidebar>
         </ClientThemeProvider>
       </body>
     </html>
